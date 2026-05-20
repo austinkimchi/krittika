@@ -128,6 +128,10 @@ class SingleLayerSim:
                 filter_part = filter_matrix[:, filt_col_start: filt_col_end]
                 ofmap_part = ofmap_matrix[ifmap_row_start: ifmap_row_end, filt_col_start:filt_col_end]
 
+                if ifmap_part.shape[0] == 0 or filter_part.shape[1] == 0 or ofmap_part.shape[0] == 0 \
+                        or ofmap_part.shape[1] == 0:
+                    continue
+
                 this_part_compute_node = ComputeNode()
                 this_part_compute_node.set_params(config=self.config_obj,
                                                   compute_unit=compute_unit,
